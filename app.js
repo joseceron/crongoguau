@@ -63,17 +63,25 @@ app.post('/cron', (req, res) => {
         url: "https://ema2edgoreader.latinapps.co/apiread/funcion/campospaginacion/5949/696/c256a74679d37c66ff3da35bbf8af58ca39541f8a350e853f442f3e42ab0171d",
         body,
       }
-      Petitions.postRequest(payload).then((response) => {
-        console.log(response.data);
+      return Petitions.postRequest(payload).then((response) => {
+        // console.log(response);
+        const data = response.data;        
+
+        if (data != null && data.length > 0) {                    
+          res.status(200).send(response);
+        } else {
+          res.status(200).send({data: [], total: 0, success: false});
+        }
       }).catch((error) => {
         console.log(error);
+        res.status(400).send({error});
       })
     // }
   // }).start();
 
-  return res.send({
-    mensaje: 'index'
-  })
+  // return res.send({
+  //   mensaje: 'index'
+  // })
 })
 
 // This metod needs to be last
