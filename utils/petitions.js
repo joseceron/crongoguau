@@ -22,7 +22,8 @@ const postRequest = (data) => {
         reject(error);
       } else {
         const dataParsed = JSON.parse(body);
-        console.log("petitions-resolve:", body);
+        // console.log("petitions-resolve:", body);clearclar
+        
         resolve(dataParsed);
       }
     });

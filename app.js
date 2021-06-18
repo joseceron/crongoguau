@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 const comodin = "\'";
 
 const date = new Date();
-// const dateStart = moment(date).format("YYYY-MM-DDTHH:mm:ss")+".000Z";
-const dateStart = moment(date).subtract(3, "hours").format("YYYY-MM-DDTHH:mm:ss")+".000Z";
+const dateStart = moment(date).format("YYYY-MM-DDTHH:mm:ss")+".000Z";
+// const dateStart = moment(date).subtract(3, "hours").format("YYYY-MM-DDTHH:mm:ss")+".000Z";
 const dateFinish = moment(date).add(30, "minutes").format("YYYY-MM-DDTHH:mm:ss")+".000Z";
 
 app.post('', (req, res) => {
@@ -51,7 +51,6 @@ const body = {
 
 app.post('/cron', (req, res) => {
   console.log(req.body)
-  
 
   // var myJob = new Scheduled({
   //   id: "goguau",
