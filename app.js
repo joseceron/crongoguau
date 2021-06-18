@@ -58,7 +58,7 @@ app.post('/cron', (req, res) => {
   // console.log(body)
   var myJob = new Scheduled({
     id: "goguau",
-    pattern: "*/1 6-23 * * 1-6", // Tarea a ejecutar cada minuto de lunes a sábado
+    pattern: "*/30 6-23 * * 1-6", // Tarea a ejecutar cada minuto de lunes a sábado
     task: function () {
       console.log("Job Go Guau: ", dateStartFixed);     
       const payload = {
