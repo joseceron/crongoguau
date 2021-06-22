@@ -52,9 +52,9 @@ app.post('/cron', (req, res) => {
     }
   }).start();
 
-  // return res.send({
-  //   mensaje: 'index'
-  // })
+  return res.send({
+    mensaje: 'index'
+  })
 })
 
 // This metod needs to be last
