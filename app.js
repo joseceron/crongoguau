@@ -16,38 +16,15 @@ app.use(bodyParser.json());
 const comodin = "\'";
 
 const date = new Date();
-const dateStart = moment(date).format("YYYY-MM-DDTHH:mm:ss")+".000Z";
-const dateStartFixed = moment(date).subtract(5, "hours").format("YYYY-MM-DDTHH:mm:ss")+".000Z";
-const dateFinish = moment(date).add(30, "minutes").format("YYYY-MM-DDTHH:mm:ss")+".000Z";
+const dateStart = moment(date).format("YYYY-MM-DDTHH:mm:ss") + ".000Z";
+const dateStartFixed = moment(date).subtract(5, "hours").format("YYYY-MM-DDTHH:mm:ss") + ".000Z";
+const dateFinish = moment(date).add(30, "minutes").format("YYYY-MM-DDTHH:mm:ss") + ".000Z";
 
 app.post('', (req, res) => {
   return res.send({
     mensaje: 'default'
   })
 })
-
-// const body = {
-//   "orden": [
-//     {
-//       "campo": "fecha_inicio",
-//       "ascendente": true,
-//     },
-//   ],
-//   "diaMes": "dia",
-//   "fechaFin": "",
-//   "fechaInicio": "",
-//   "filtros": [  
-//     {
-//       "objeto": "servicio",
-//       "campo": "fecha_inicio",
-//       "condicional": "BETWEEN",
-//       "parametro": comodin + dateStart + comodin + 
-//           " AND " + 
-//           comodin + dateFinish + comodin,
-//       "conjuncion": "AND",
-//     },
-//   ],
-// }
 
 const body = {
   msg: "Start cron"
@@ -60,12 +37,11 @@ app.post('/cron', (req, res) => {
     id: "goguau",
     pattern: "*/30 6-23 * * 1-6", // Tarea a ejecutar cada minuto de lunes a sábado
     task: function () {
-      console.log("Job Go Guau: ", dateStartFixed);     
+      console.log("Job Go Guau: ", dateStartFixed);
       const payload = {
         url: 'https://us-central1-test-goguau.cloudfunctions.net/serviceNotification/cron',
         body
       };
-
       return Petitions.postRequest(payload).then((response) => {
         console.log(response);
         res.status(200).send(response);
